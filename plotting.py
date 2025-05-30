@@ -24,12 +24,14 @@ def plot_field_lines(X, Y, Ex, Ey, charges=None, filename=None):
 
 def plot_potential_contours(X, Y, V, charges=None, filename=None):
     plt.figure()
-    cp = plt.contour(X, Y, V, levels=50, cmap='coolwarm')  # <- Faltaba esta línea
+ # Definir niveles manualmente desde el mínimo al máximo
+    niveles = np.linspace(np.min(V), np.max(V), 1000) 
+    cp = plt.contour(X, Y, V, levels=niveles, colors='black', linewidths=0.5)
+
     plt.title('Líneas Equipotenciales')
     plt.xlabel('x')
     plt.ylabel('y')
     plt.axis('equal')
-    plt.colorbar(cp, label='V')  # <- Corrección aquí
     plt.xlim(-2, 2)
     plt.ylim(-1.5, 1.5)
     plt.grid(True)
