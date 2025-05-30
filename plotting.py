@@ -30,6 +30,8 @@ def plot_potential_contours(X, Y, V, charges=None, filename=None):
     plt.ylabel('y')
     plt.axis('equal')
     plt.colorbar(cp, label='V')  # <- Corrección aquí
+    plt.xlim(-2, 2)
+    plt.ylim(-1.5, 1.5)
     plt.grid(True)
 
     # Agregar cargas
