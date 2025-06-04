@@ -1,5 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from jinja2 import Template
+import pdfkit
+import os
 
 import config
 from charges import Charge
@@ -66,7 +69,7 @@ for idx in zero_crossings:
         real_equilibrium_points.append(x_eq)
 
 # Mostrar los puntos válidos
-print("Puntos de equilibrio reales (excluyendo posiciones de carga):")
+print("Puntos de equilibrio reales:")
 for p in real_equilibrium_points:
     print(f"x = {p:.5f} m")
 
@@ -120,3 +123,38 @@ plt.grid(True)
 plt.legend()
 plt.savefig("Vx_vs_x.png")
 plt.show()
+
+
+#-------------------
+#Generación del PDF
+#-------------------
+
+# Formatear puntos para el HTML
+puntos_formateados = [f"x = {p:.5f} m" for p in real_equilibrium_points]
+
+# Leer index.html
+folder = os.path.dirname(os.path.abspath(__file__))
+html_path = os.path.join(folder, "index.html")
+
+with open(html_path, "r", encoding="utf-8") as f:
+    html_base = f.read()
+
+# Renderizar HTML con Jinja2
+template = Template(html_base)
+rendered_html = template.render(puntos=puntos_formateados)
+
+# Guardar HTML renderizado temporalmente
+rendered_html_path = os.path.join(folder, "index_rendered.html")
+with open(rendered_html_path, "w", encoding="utf-8") as f:
+    f.write(rendered_html)
+
+# Configurar wkhtmltopdf
+path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+options = {'enable-local-file-access': None}
+
+# Generar PDF
+pdf_output_path = os.path.join(folder, "informe_final.pdf")
+pdfkit.from_file(rendered_html_path, pdf_output_path, options=options, configuration=config)
+
+print(f"PDF generado correctamente en: {pdf_output_path}")
