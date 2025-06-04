@@ -30,6 +30,24 @@ Ex, Ey = compute_field(charges, X, Y)
 plot_field_lines(X, Y, Ex, Ey, charges=charges, filename="campo_electrico.png")
 
 # ======================
+# Campo Eléctrico en un punto 
+# ======================
+
+x_test, y_test = 2.0, 2.0
+Ex_total, Ey_total = compute_field(charges,x_test, y_test)  # tu función
+E_modulo = np.sqrt(Ex_total**2 + Ey_total**2)
+angulo = np.degrees(np.arctan2(Ey_total, Ex_total))
+
+campo_resultado = {
+    "x": x_test,
+    "y": y_test,
+    "Ex": round(float(Ex_total), 3),
+    "Ey": round(float(Ey_total), 3),
+    "modulo": round(float(E_modulo), 3),
+    "angulo": round(float(angulo), 2)
+}
+
+# ======================
 # Potencial Eléctrico
 # ======================
 V = compute_potential(charges, X, Y)
@@ -141,7 +159,8 @@ with open(html_path, "r", encoding="utf-8") as f:
 
 # Renderizar HTML con Jinja2
 template = Template(html_base)
-rendered_html = template.render(puntos=puntos_formateados)
+rendered_html = template.render(puntos=puntos_formateados,
+    campo=campo_resultado)
 
 # Guardar HTML renderizado temporalmente
 rendered_html_path = os.path.join(folder, "index_rendered.html")
