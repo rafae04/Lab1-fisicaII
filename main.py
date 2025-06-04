@@ -181,7 +181,7 @@ rendered_html_path = os.path.join(folder, "index_rendered.html")
 with open(rendered_html_path, "w", encoding="utf-8") as f:
     f.write(rendered_html)
 
-# Configurar wkhtmltopdf 
+# Configurar wkhtmltopdf  (debe descargar y agregar a PATH previamente https://wkhtmltopdf.org/downloads.html )
 path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 options = {'enable-local-file-access': None}
