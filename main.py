@@ -86,10 +86,6 @@ for idx in zero_crossings:
     if not any(np.isclose(x_eq, xc, atol=tol) for xc in charge_positions):
         real_equilibrium_points.append(x_eq)
 
-# Mostrar los puntos válidos
-print("Puntos de equilibrio reales:")
-for p in real_equilibrium_points:
-    print(f"x = {p:.5f} m")
 
 # ======================
 # Graficar E(x) con puntos de equilibrio y cargas
