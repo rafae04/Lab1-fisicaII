@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultados del Laboratorio</title>
-
     <style>
         body {
             font-family: sans-serif;
@@ -14,38 +13,50 @@
             margin: 20px;
             border: 1px solid #ccc;
         }
+        p {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: justify;
+        }
     </style>
 </head>
 <body>
-    <h1>Laboratorio Electrostática</h1>
-    <body>Se analizaron tres cargas puntuales dispuestas sobre el eje x, y se calculó el campo y el potencial eléctrico en la región circundante. Las líneas de campo evidencian regiones de intensidad elevada cerca de las cargas, mientras que los contornos equipotenciales permiten observar simetrías y discontinuidades asociadas a la magnitud y signo de cada carga.
-        En la proyección del campo sobre el eje x, se identificaron contribuciones individuales de cada carga y su superposición. Las discontinuidades cercanas a las posiciones de las cargas representan el carácter singular del campo eléctrico en dichos puntos.
-        Por otro lado, el gráfico del potencial eléctrico muestra una transición continua, como se espera, con máximos y mínimos definidos por la cercanía y signo de las cargas.
-        Finalmente, se localizaron puntos donde el campo eléctrico resultante es aproximadamente nulo, lo cual permite identificar puntos de equilibrio. Estos fueron graficados sobre la distribución total del campo, permitiendo interpretarlos físicamente como regiones donde una carga de prueba no experimentaría fuerza neta.
-        Las imágenes a continuación ilustran estos análisis:</body>
-    <h1>Visualización de Campo y Potencial Eléctrico</h1>
-    <h2>Líneas de Campo Eléctrico</h2>
-    <img src="campo_electrico.png" alt="Campo Eléctrico">
+    <h2>Laboratorio Electrostática</h2>
+    <sub>Rafaela Molteni, Andrea Colquechambi y Victoria Legakis</sub>
 
-    <h2>Líneas Equipotenciales</h2>
-    <img src="potencial_electrico.png" alt="Potencial Eléctrico">
+    <p>Para el presente laboratorio se analizó computacionalmente la interacción de tres cargas puntuales dispuestas sobre el eje x, y en ello, se calculó el campo y potencial eléctrico causado por la presencia de las mismas. Debajo se puede visualizar los campos eléctricos individuales generados por las cargas q1, q2 y q3 respectivamente, y como así aportarán cada una al campo eléctrico total, que por principio de superposición será la sumatoria de los campos E1, E2 y E3 respectivamente.</p>
 
-    <h2>Gráfico de E(x)</h2>
-    <img src="Ex_vs_x.png" alt="E(x)">
 
-    <h2>Gráfico de E(x) con puntos de equilibrio</h2>
-    <img src="Ex_vs_x_con_equilibrio.png" alt="E(x) con equilibrio">
-
-    <h2>Gráfico de E(x) q1</h2>
+    <h3>Gráfico de E(x) q1</h3>
     <img src="Exq1_vs_x.png" alt="E(x)">
 
-    <h2>Gráfico de E(x) q2</h2>
+    <h3>Gráfico de E(x) q2</h3>
     <img src="Exq2_vs_x.png" alt="E(x)">
 
-    <h2>Gráfico de E(x) q3</h2>
+    <h3>Gráfico de E(x) q3</h3>
     <img src="Exq3_vs_x.png" alt="E(x)">
 
-    <h2>Gráfico de V(x)</h2>
+     <p>En la proyección del campo total sobre el eje x, se evidencia cómo dicha superposición de las contribuciones individuales resulta en el campo eléctrico total. Graficamos además puntos de equilibrio, permitiendo interpretarlos físicamente como regiones donde una carga de prueba no experimentaría fuerza neta. Debemos destacar que solamente un punto de equilibrio está siendo representado, ya que en el infinito podemos encontrar otro, de la rama negativa de q3 convirtiéndose en positiva (al ser la carga neta del sistema positiva) y encontrando allí otro punto donde el campo se anula, que no ha podido ser representado por dimensionalidad de la representación gráfica. Las discontinuidades cercanas a las posiciones de las cargas representan el carácter singular del campo eléctrico en dichos puntos.</p>
+
+    <h3>Gráfico de E(x)</h3>
+    <img src="Ex_vs_x.png" alt="E(x)">
+
+    <h3>Gráfico de E(x) con puntos de equilibrio</h3>
+    <img src="Ex_vs_x_con_equilibrio.png" alt="E(x) con equilibrio">
+
+    <p>Las líneas de campo evidencian el sentido en el que fluyen las fuerzas que componen los campos eléctricos de cada carga y así la dirección del campo total.</p>
+
+    <h3>Líneas de Campo Eléctrico</h3>
+    <img src="campo_electrico.png" alt="Campo Eléctrico">
+
+    <p>Las líneas equipotenciales muestran los puntos del espacio que tienen el mismo potencial eléctrico. Si se coloca una carga de prueba en cualquier punto sobre una línea equipotencial, no realizará trabajo eléctrico al moverse por esa línea, ya que su energía potencial no cambia. Estas líneas siempre son perpendiculares a las líneas del campo eléctrico, lo cual podemos observar si lo comparamos con el gráfico anterior:</p>
+
+    <h3>Líneas Equipotenciales</h3>
+    <img src="potencial_electrico.png" alt="Potencial Eléctrico">
+
+    <p>Por otro lado, el gráfico del potencial eléctrico muestra una transición continua, como se espera, con un mínimo definido por el signo de las cargas q1 y q2. Vemos en particular que en el punto de equilibrio del campo eléctrico se haya el mínimo de potencial eléctrico, relación que evidencia la fórmula E= −∇V, donde se establece que el campo eléctrico apunta en la dirección donde el potencial disminuye más rápidamente, y en este caso al ser 0 el campo, el cambio de V (su pendiente) será 0 y por lo tanto habrá un mínimo en dicho punto. </p>
+
+    <h3>Gráfico de V(x)</h3>
     <img src="Vx_vs_x.png" alt="V(x)">
 </body>
 </html>
