@@ -109,27 +109,44 @@ plt.grid(True)
 plt.legend()
 plt.savefig("Ex_vs_x_con_equilibrio.png")
 plt.show()
+
 # ======================
-# Graficar E(x) individuales por carga
+# Graficar E(x) individuales por carga 
 # ======================
 colors = ['green', 'blue', 'orange']
+exclusion_radius = 0.01  # 1 cm de exclusión alrededor de la carga
+
 for i, charge in enumerate(charges):
     xs_q, E_q = compute_1d_field_or_potential([charge], axis='x', fixed_coord=0, points=2000, mode='field')
+    
+    # Filtrar valores cercanos a la carga (asíntota)
+    E_q_filtered = np.copy(E_q)
+    E_q_filtered[np.abs(xs_q - charge.x) < exclusion_radius] = np.nan
+    
     plt.figure()
-    plt.plot(xs_q, E_q, label=f'E(x) q{i+1} = {charge.q*1e6:.0f} μC', color=colors[i], linestyle='--')
+    plt.plot(xs_q, E_q_filtered, label=f'E(x) q{i+1} = {charge.q*1e6:.0f} μC', color=colors[i], linestyle='--')
+    plt.axhline(0, color='black', linestyle=':', linewidth=0.8)
     plt.title(f'Campo Eléctrico E(x) de q{i+1} sobre el eje x')
     plt.xlabel('x (m)')
     plt.ylabel('E(x) (N/C)')
     plt.grid(True)
     plt.legend()
     plt.savefig(f"Exq{i+1}_vs_x.png")
+    plt.close()
+
 
 # ======================
 # Potencial V(x) sobre el eje x
 # ======================
 xs, V_total = compute_1d_field_or_potential(charges, axis='x', fixed_coord=0, mode='potential')
+
 plt.figure()
 plt.plot(xs, V_total, label='V(x) total', color='blue')
+
+# Posiciones de las cargas
+for i, xc in enumerate(charge_positions):
+    plt.axvline(x=xc, color='purple', linestyle=':', linewidth=1, label='Carga' if i == 0 else "")
+
 plt.title('Potencial Eléctrico V(x) sobre el eje x')
 plt.xlabel('x (m)')
 plt.ylabel('V(x) (V)')
@@ -137,6 +154,7 @@ plt.grid(True)
 plt.legend()
 plt.savefig("Vx_vs_x.png")
 plt.show()
+
 
 
 #-------------------
@@ -163,7 +181,7 @@ rendered_html_path = os.path.join(folder, "index_rendered.html")
 with open(rendered_html_path, "w", encoding="utf-8") as f:
     f.write(rendered_html)
 
-# Configurar wkhtmltopdf
+# Configurar wkhtmltopdf 
 path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 options = {'enable-local-file-access': None}
