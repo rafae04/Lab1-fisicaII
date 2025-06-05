@@ -20,6 +20,11 @@
             margin: 20px;
             border: 1px solid #ccc;
         }
+        img2{
+            width: 50px;
+            margin: 20px;
+            border: 1px solid #ccc;
+        }
         p {
             max-width: 800px;
             margin: 20px auto;
@@ -38,48 +43,42 @@
     
     <p>En este laboratorio se analiza el comportamiento del campo eléctrico generado por tres cargas puntuales dispuestas a lo largo del eje x. La configuración estudiada consiste en dos cargas positivas ubicadas en los puntos (0, 0) y (1.5, 0), con magnitudes de (+30×10^−6) y (+20×10^−6 ) respectivamente, y una carga negativa de (−40×10^−6 ) ubicada en (0.5, 0).</p>
 
-    <img src="plano_cargas.png" alt="XY">
+    <img2 src="plano_cargas.png" alt="XY">
 
-    <p>Para analizar el comportamiento del campo eléctrico generado por la configuración de cargas, calculamos numéricamente los valores para tres puntos del plano <b>xy</b> el campo eléctrico E(x,y): </p>
+    <p>Para analizar el comportamiento del campo eléctrico generado por la configuración de cargas, calculamos numéricamente, con la formula,</p>
+    <img src="Formula_Campo_Electrico.png" alt="formula camplo Electrico" >
+    <p> los valores para tres puntos del plano <b>xy</b> el campo eléctrico E(x,y): </p>
     <ul>
-        <li>E1:  E( 0 , -0.75 )=</li>
-        <li>E2:  E( 0 , 1.5 )=</li>
-        <li>E3:  E( -0.75 , -1.5 )= </li>
+        <li>E1:  E( -0.71 , 0 )=</li>
+        <li>E2:  E( 2 , 2 )=</li>
+        <li>E3:  E( -1.5 , -0.75)= </li>
 
         </ul>
-
-    <p>De los resultados obtenidos, se observa que en el punto  <B>E1</B> el campo eléctrico es cercano a cero, debido a que los campos generados por las dos cargas positivas se cancelan parcialmente. En  <B>E2</B>, el componente en <B>y</B> es prácticamente nulo, mientras que el componente en <B>x</B> presenta un valor significativo, lo que refleja la interacción predominante con la carga negativa. Un comportamiento similar se aprecia en  <B>E3</B>​, donde el componente en <B>x</B> es elevado y el de <b>y</b> cercano a cero, evidenciando la dirección predominante del campo en ese punto.</p>
+        
+    <p>De los resultados obtenidos, se observa que en el punto  <B>E1</B> el campo eléctrico es cercano a cero, debido a que los campos generados por las dos cargas positivas se cancelan parcialmente. </p>
+    <p>En  <B>E2</B> el campo eléctrico presenta un valor elevado, con un componente en  <B>y</B> claramente dominante y negativo, y un componente en <B>x</B> también negativo pero de menor magnitud. Esto sugiere que una carga de prueba positiva ubicada en dicha posición sería empujada principalmente hacia abajo y levemente hacia la izquierda, reflejando la influencia predominante de la carga negativa más cercana. Esta configuración puede visualizarse claramente en el gráfico de líneas de campo.</p>
+    <p>En <B>E3</B>, el componente en <B>x</B> es prácticamente nulo, mientras que el componente en <B>y</B> presenta un valor significativo, lo que refleja la interacción predominante con la carga positiva.</p>
     <p>Para cambiar de lugar a E1, E2 y E3 pueden editarlos manualmente en <code>main.py</code>, línea 36.</p>
 
     <h3>Líneas de Campo Eléctrico</h3>
     <img src="campo_electrico_con_puntos.png" alt="Campo Eléctrico con Puntos">
     
-    <h3>Gráfico de E(x) q1</h3>
+    <div class="page-break"></div> <!--salto de pag-->
+
+    <p>En el gráfico <a href="Ex_vs_x.png"><i>“Campo Eléctrico E(x) sobre eje x”</i></a>, que representa el campo eléctrico total a lo largo del eje x, se observa que resulta de la suma de los campos generados por cada carga individual, representados en los gráficos  <a href="Exq1_vs_x.png"><i>“Campo Eléctrico E(x) de q1”</i></a>,  <a href="Exq2_vs_x.png"><i>“de q2”</i></a> y <a href="Exq3_vs_x.png"><i>“de q3”</i></a>. . Esta superposición refleja cómo las contribuciones individuales se combinan para formar el campo total, tal como se aprecia en la forma final del gráfico.</p>
+
     <img src="Exq1_vs_x.png" alt="E(x)">
 
-    <h3>Gráfico de E(x) q2</h3>
     <img src="Exq2_vs_x.png" alt="E(x)">
 
-    <h3>Gráfico de E(x) q3</h3>
     <img src="Exq3_vs_x.png" alt="E(x)">
 
-     <p>En la proyección del campo total sobre el eje x, se evidencia cómo dicha superposición de las contribuciones individuales resulta en el campo eléctrico total. Graficamos además puntos de equilibrio, permitiendo interpretarlos físicamente como regiones donde una carga de prueba no experimentaría fuerza neta. Debemos destacar que solamente un punto de equilibrio está siendo representado, ya que en el infinito podemos encontrar otro, de la rama negativa de q3 convirtiéndose en positiva (al ser la carga neta del sistema positiva) y encontrando allí otro punto donde el campo se anula, que no ha podido ser representado por dimensionalidad de la representación gráfica. Las discontinuidades cercanas a las posiciones de las cargas representan el carácter singular del campo eléctrico en dichos puntos.</p>
-
-    <h3>Gráfico de E(x)</h3>
     <img src="Ex_vs_x.png" alt="E(x)">
 
-    <div style="text-align: center;"></div>
-    <h3>Cálculo del Campo Eléctrico en ({{ campo.x }}, {{ campo.y }})</h3>
-            <p style="text-align: center;">
-                Componente x: <strong>{{ campo.Ex }}</strong> N/C<br>
-                Componente y: <strong>{{ campo.Ey }}</strong> N/C<br>
-                Módulo total: <strong>{{ campo.modulo }}</strong> N/C<br>
-                Dirección (desde el eje x): <strong>{{ campo.angulo }}°</strong>
-            </p>
-            <p>El cálculo del campo eléctrico indica que una carga positiva ubicada en (2,2) sería empujada principalmente hacia abajo y ligeramente a la izquierda. La carga negativa cercana domina la dirección del campo en ese punto y el campo es grande por la cercanía de las cargas entre ellas. Esto puede evidenciarse en el gráfico de lineas de campo.</p>
-    </div>
-  
-    <h3>Gráfico de E(x) con puntos de equilibrio</h3>
+    <div class="page-break"></div> <!--salto de pag-->
+
+    <p>En el gráfico <a href="Ex_vs_x_con_equilibrio.png"><i>“E(x) con puntos de equilibrio”</i></a> se observa un punto de equilibrio en <b>x=0,71</b>, es donde el efecto de las dos cargas positivas se cancela y el campo es cero. Si bien solo se muestra ese punto, sabemos que existe otro en el infinito, donde el campo también se anula debido al predominio de la carga neta positiva del sistema. No fue posible representarlo por las limitaciones del gráfico. Las discontinuidades cerca de las cargas muestran cómo el campo crece mucho en esos puntos, lo que es típico en cargas puntuales.</p>
+
     <img src="Ex_vs_x_con_equilibrio.png" alt="E(x) con equilibrio">
 
       <div style="text-align: center;"></div>
@@ -91,12 +90,8 @@
     </ul>
     </div>
 
-
-    <p>Las líneas de campo evidencian el sentido en el que fluyen las fuerzas que componen los campos eléctricos de cada carga y así la dirección del campo total.</p>
-
-    <h3>Líneas de Campo Eléctrico</h3>
-    <img src="campo_electrico.png" alt="Campo Eléctrico">
-
+    <div class="page-break"></div> <!--salto de pag-->
+    
     <p>Las líneas equipotenciales muestran los puntos del espacio que tienen el mismo potencial eléctrico. Si se coloca una carga de prueba en cualquier punto sobre una línea equipotencial, no realizará trabajo eléctrico al moverse por esa línea, ya que su energía potencial no cambia. Estas líneas siempre son perpendiculares a las líneas del campo eléctrico, lo cual podemos observar si lo comparamos con el gráfico anterior:</p>
 
     <h3>Líneas Equipotenciales</h3>

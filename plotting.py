@@ -32,11 +32,12 @@ def plot_field_lines(X, Y, Ex, Ey, charges=[], extra_points=None, filename=None)
     plt.close()
 
 
-def plot_potential_contours(X, Y, V, charges=None, filename=None):
+def plot_potential_contours(X, Y, Ex, Ey, V, charges=None, filename=None):
     plt.figure()
  # Definir niveles manualmente desde el mínimo al máximo
     niveles = np.linspace(np.min(V), np.max(V), 1000) 
     cp = plt.contour(X, Y, V, levels=niveles, colors='black', linewidths=0.5)
+
 
     plt.title('Líneas Equipotenciales')
     plt.xlabel('x')
@@ -44,7 +45,11 @@ def plot_potential_contours(X, Y, V, charges=None, filename=None):
     plt.axis('equal')
     plt.xlim(-2, 2)
     plt.ylim(-1.5, 1.5)
+    plt.tight_layout()
     plt.grid(True)
+
+    # Dibujar líneas de campo
+    plt.streamplot(X, Y, Ex, Ey, color='gray', linewidth=0.5, density=1.5, arrowsize=1)
 
     # Agregar cargas
     if charges:

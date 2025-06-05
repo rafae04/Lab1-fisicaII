@@ -33,7 +33,7 @@ plot_plano(X, Y, charges=charges, filename="plano_cargas.png")
 # ======================
 Ex, Ey = compute_field(charges, X, Y)
 plot_field_lines(X, Y, Ex, Ey, charges=charges, filename="campo_electrico.png")
-puntos_extra = [(-0.75, 0), (1.5, 0), (-1.5, -0.75)]
+puntos_extra = [(-0.71, 0), (2, 2), (-1.5, -0.75)]
 plot_field_lines(X, Y, Ex, Ey, charges=charges, extra_points=puntos_extra, filename="campo_electrico_con_puntos.png")
 
 
@@ -59,7 +59,8 @@ campo_resultado = {
 # Potencial Eléctrico
 # ======================
 V = compute_potential(charges, X, Y)
-plot_potential_contours(X, Y, V, charges=charges, filename="potencial_electrico.png")
+Ex, Ey = compute_field(charges, X, Y)
+plot_potential_contours(X, Y, Ex, Ey, V, charges=charges, filename="potencial_electrico.png")
 
 # ======================
 # E(x) sobre el eje x
@@ -116,7 +117,7 @@ plt.ylabel('E(x) (N/C)')
 plt.grid(True)
 plt.legend()
 plt.savefig("Ex_vs_x_con_equilibrio.png")
-plt.show()
+#plt.show()
 
 # ======================
 # Graficar E(x) individuales por carga 
@@ -161,7 +162,7 @@ plt.ylabel('V(x) (V)')
 plt.grid(True)
 plt.legend()
 plt.savefig("Vx_vs_x.png")
-plt.show()
+#plt.show()
 
 
 
