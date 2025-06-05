@@ -8,6 +8,13 @@
             font-family: sans-serif;
             text-align: center;
         }
+        h2{
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+        sub{
+             font-size: 13px;
+        }
         img {
             width: 600px;
             margin: 20px;
@@ -18,15 +25,35 @@
             margin: 20px auto;
             text-align: justify;
         }
+        .page-break{
+            page-break-before: always;
+        }
     </style>
 </head>
 <body>
-    <h2>Laboratorio Electrostática</h2>
+    <h2><b>Laboratorio Electrostática</b></h2>
     <sub>Rafaela Molteni, Andrea Colquechambi y Victoria Legakis</sub>
 
-    <p>Para el presente laboratorio se analizó computacionalmente la interacción de tres cargas puntuales dispuestas sobre el eje x, y en ello, se calculó el campo y potencial eléctrico causado por la presencia de las mismas. Debajo se puede visualizar los campos eléctricos individuales generados por las cargas q1, q2 y q3 respectivamente, y como así aportarán cada una al campo eléctrico total, que por principio de superposición será la sumatoria de los campos E1, E2 y E3 respectivamente.</p>
+    <div class="page-break"></div> <!--salto de pag-->
+    
+    <p>En este laboratorio se analiza el comportamiento del campo eléctrico generado por tres cargas puntuales dispuestas a lo largo del eje x. La configuración estudiada consiste en dos cargas positivas ubicadas en los puntos (0, 0) y (1.5, 0), con magnitudes de (+30×10^−6) y (+20×10^−6 ) respectivamente, y una carga negativa de (−40×10^−6 ) ubicada en (0.5, 0).</p>
 
+    <img src="plano_cargas.png" alt="XY">
 
+    <p>Para analizar el comportamiento del campo eléctrico generado por la configuración de cargas, calculamos numéricamente los valores para tres puntos del plano <b>xy</b> el campo eléctrico E(x,y): </p>
+    <ul>
+        <li>E1:  E( 0 , -0.75 )=</li>
+        <li>E2:  E( 0 , 1.5 )=</li>
+        <li>E3:  E( -0.75 , -1.5 )= </li>
+
+        </ul>
+
+    <p>De los resultados obtenidos, se observa que en el punto  <B>E1</B> el campo eléctrico es cercano a cero, debido a que los campos generados por las dos cargas positivas se cancelan parcialmente. En  <B>E2</B>, el componente en <B>y</B> es prácticamente nulo, mientras que el componente en <B>x</B> presenta un valor significativo, lo que refleja la interacción predominante con la carga negativa. Un comportamiento similar se aprecia en  <B>E3</B>​, donde el componente en <B>x</B> es elevado y el de <b>y</b> cercano a cero, evidenciando la dirección predominante del campo en ese punto.</p>
+    <p>Para cambiar de lugar a E1, E2 y E3 pueden editarlos manualmente en <code>main.py</code>, línea 36.</p>
+
+    <h3>Líneas de Campo Eléctrico</h3>
+    <img src="campo_electrico_con_puntos.png" alt="Campo Eléctrico con Puntos">
+    
     <h3>Gráfico de E(x) q1</h3>
     <img src="Exq1_vs_x.png" alt="E(x)">
 
@@ -79,5 +106,8 @@
 
     <h3>Gráfico de V(x)</h3>
     <img src="Vx_vs_x.png" alt="V(x)">
+
+    
+
 </body>
 </html>

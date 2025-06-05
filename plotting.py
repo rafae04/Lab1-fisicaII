@@ -1,26 +1,36 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_field_lines(X, Y, Ex, Ey, charges=None, filename=None):
-    plt.figure()
-    plt.streamplot(X, Y, Ex, Ey, color=np.sqrt(Ex**2 + Ey**2), cmap='inferno')
-    plt.title('Líneas de Campo Eléctrico')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.axis('equal')
-    plt.grid(True)
+def plot_field_lines(X, Y, Ex, Ey, charges=[], extra_points=None, filename=None):
+    fig, ax = plt.subplots(figsize=(8, 6))
+    
+    # Dibujar líneas de campo
+    ax.streamplot(X, Y, Ex, Ey, color='black', linewidth=1, density=1.5, arrowsize=1)
+    
+    # Dibujar cargas
+    for charge in charges:
+        color = 'red' if charge.q > 0 else 'blue'
+        ax.plot(charge.x, charge.y, 'o', color=color, markersize=10,
+                markeredgecolor='black', markeredgewidth=1.5)
 
-    # Agregar cargas
-    if charges:
-        for charge in charges:
-            color = 'red' if charge.q > 0 else 'blue'
-            plt.plot(charge.x, charge.y, 'o', color=color, markersize=10)
+    # Dibujar puntos extra si se pasan
+    if extra_points:
+        xs, ys = zip(*extra_points)
+        ax.plot(xs, ys, 'o', color='green', markersize=10,
+                markeredgecolor='black', markeredgewidth=1.2)
 
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_aspect('equal')
+    ax.grid(True)
+    
     if filename:
-        plt.savefig(filename)
-        plt.close()
+        plt.savefig(filename, dpi=300)
     else:
         plt.show()
+
+    plt.close()
+
 
 def plot_potential_contours(X, Y, V, charges=None, filename=None):
     plt.figure()
@@ -41,6 +51,27 @@ def plot_potential_contours(X, Y, V, charges=None, filename=None):
         for charge in charges:
             color = 'red' if charge.q > 0 else 'blue'
             plt.plot(charge.x, charge.y, 'o', color=color, markersize=10)
+
+    if filename:
+        plt.savefig(filename)
+        plt.close()
+    else:
+        plt.show()
+
+def plot_plano(X, Y, charges=None, filename=None):
+    plt.figure()
+    plt.title('Plano XY')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.axis('equal')
+    plt.grid(True)
+
+
+     # Agregar cargas
+    if charges:
+        for charge in charges:
+            color = 'red' if charge.q > 0 else 'blue'
+            plt.plot(charge.x, charge.y, 'o', color=color, markersize=10, markeredgecolor='black', markeredgewidth=1.5)
 
     if filename:
         plt.savefig(filename)

@@ -8,7 +8,7 @@ import config
 from charges import Charge
 from electric_field import compute_field
 from potential import compute_potential
-from plotting import plot_field_lines, plot_potential_contours
+from plotting import plot_field_lines, plot_potential_contours, plot_plano
 from utils import compute_1d_field_or_potential
 
 # Crear las cargas
@@ -24,10 +24,18 @@ y = np.linspace(*config.Y_RANGE, config.GRID_SIZE)
 X, Y = np.meshgrid(x, y)
 
 # ======================
+# Plano con las cargas
+# ======================
+plot_plano(X, Y, charges=charges, filename="plano_cargas.png") 
+
+# ======================
 # Campo Eléctrico
 # ======================
 Ex, Ey = compute_field(charges, X, Y)
 plot_field_lines(X, Y, Ex, Ey, charges=charges, filename="campo_electrico.png")
+puntos_extra = [(-0.75, 0), (1.5, 0), (-1.5, -0.75)]
+plot_field_lines(X, Y, Ex, Ey, charges=charges, extra_points=puntos_extra, filename="campo_electrico_con_puntos.png")
+
 
 # ======================
 # Campo Eléctrico en un punto 
