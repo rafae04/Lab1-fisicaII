@@ -33,27 +33,31 @@ plot_plano(X, Y, charges=charges, filename="plano_cargas.png")
 # ======================
 Ex, Ey = compute_field(charges, X, Y)
 plot_field_lines(X, Y, Ex, Ey, charges=charges, filename="campo_electrico.png")
-puntos_extra = [(-0.71, 0), (2, 2), (-1.5, -0.75)]
+puntos_extra = [(-0.71, 0.0), (1.0, 1.0), (-1.5, -0.75)]
 plot_field_lines(X, Y, Ex, Ey, charges=charges, extra_points=puntos_extra, filename="campo_electrico_con_puntos.png")
 
 
 # ======================
 # Campo Eléctrico en un punto 
 # ======================
+campos_resultantes = []
 
-x_test, y_test = 2.0, 2.0
-Ex_total, Ey_total = compute_field(charges,x_test, y_test)  # tu función
-E_modulo = np.sqrt(Ex_total**2 + Ey_total**2)
-angulo = np.degrees(np.arctan2(Ey_total, Ex_total))
+for x_test, y_test in puntos_extra:
+    Ex_total, Ey_total = compute_field(charges, x_test, y_test)
+    E_modulo = np.sqrt(Ex_total**2 + Ey_total**2)
+    angulo = np.degrees(np.arctan2(Ey_total, Ex_total))
 
-campo_resultado = {
-    "x": x_test,
-    "y": y_test,
-    "Ex": round(float(Ex_total), 3),
-    "Ey": round(float(Ey_total), 3),
-    "modulo": round(float(E_modulo), 3),
-    "angulo": round(float(angulo), 2)
-}
+    campo_resultado = {
+        "x": x_test,
+        "y": y_test,
+        "Ex": round(float(Ex_total), 3),
+        "Ey": round(float(Ey_total), 3),
+        "modulo": round(float(E_modulo), 3),
+        "angulo": round(float(angulo), 2)
+    }
+
+    campos_resultantes.append(campo_resultado)
+
 
 # ======================
 # Potencial Eléctrico
@@ -164,6 +168,29 @@ plt.legend()
 plt.savefig("Vx_vs_x.png")
 #plt.show()
 
+# ======================
+# Graficar V(x) individuales por carga 
+# ======================
+colors = ['green', 'blue', 'orange']
+exclusion_radius = 0.01  # 1 cm de exclusión alrededor de la carga
+
+for i, charge in enumerate(charges):
+    xs_q, E_q = compute_1d_field_or_potential([charge], axis='x', fixed_coord=0, points=2000, mode='potential')
+    
+    # Filtrar valores cercanos a la carga (asíntota)
+    E_q_filtered = np.copy(E_q)
+    E_q_filtered[np.abs(xs_q - charge.x) < exclusion_radius] = np.nan
+    
+    plt.figure()
+    plt.plot(xs_q, E_q_filtered, label=f'V(x) q{i+1} = {charge.q*1e6:.0f} μC', color=colors[i], linestyle='--')
+    plt.axhline(0, color='black', linestyle=':', linewidth=0.8)
+    plt.title(f'Potencial V(x) de q{i+1} sobre el eje x')
+    plt.xlabel('x (m)')
+    plt.ylabel('v(x) (v)')
+    plt.grid(True)
+    plt.legend()
+    plt.savefig(f"Vxq{i+1}_vs_x.png")
+    plt.close()
 
 
 #-------------------
@@ -183,7 +210,7 @@ with open(html_path, "r", encoding="utf-8") as f:
 # Renderizar HTML con Jinja2
 template = Template(html_base)
 rendered_html = template.render(puntos=puntos_formateados,
-    campo=campo_resultado)
+    campos=campos_resultantes)
 
 # Guardar HTML renderizado temporalmente
 rendered_html_path = os.path.join(folder, "index_rendered.html")

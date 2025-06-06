@@ -20,8 +20,8 @@
             margin: 20px;
             border: 1px solid #ccc;
         }
-        img2{
-            width: 50px;
+        .img2{
+            width: 300px;
             margin: 20px;
             border: 1px solid #ccc;
         }
@@ -36,6 +36,7 @@
     </style>
 </head>
 <body>
+    
     <h2><b>Laboratorio Electrostática</b></h2>
     <sub>Rafaela Molteni, Andrea Colquechambi y Victoria Legakis</sub>
 
@@ -43,17 +44,36 @@
     
     <p>En este laboratorio se analiza el comportamiento del campo eléctrico generado por tres cargas puntuales dispuestas a lo largo del eje x. La configuración estudiada consiste en dos cargas positivas ubicadas en los puntos (0, 0) y (1.5, 0), con magnitudes de (+30×10^−6) y (+20×10^−6 ) respectivamente, y una carga negativa de (−40×10^−6 ) ubicada en (0.5, 0).</p>
 
-    <img2 src="plano_cargas.png" alt="XY">
+    <img src="plano_cargas.png" alt="XY">
 
     <p>Para analizar el comportamiento del campo eléctrico generado por la configuración de cargas, calculamos numéricamente, con la formula,</p>
-    <img src="Formula_Campo_Electrico.png" alt="formula camplo Electrico" >
-    <p> los valores para tres puntos del plano <b>xy</b> el campo eléctrico E(x,y): </p>
-    <ul>
-        <li>E1:  E( -0.71 , 0 )=</li>
-        <li>E2:  E( 2 , 2 )=</li>
-        <li>E3:  E( -1.5 , -0.75)= </li>
+    <img src="Formula_Campo_Electrico.png" class="img2" alt="formula camplo Electrico" >
+    
+    <table border="1" cellspacing="0" cellpadding="6" style="margin: 0 auto; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+      <th>Ex</th>
+      <th>Ey</th>
+      <th>|E|</th>
+      <th>Ángulo (°)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for campo in campos %}
+    <tr>
+        <td>{{ campo.x }}</td>
+        <td>{{ campo.y }}</td>
+        <td>{{ campo.Ex }}</td>
+        <td>{{ campo.Ey }}</td>
+        <td>{{ campo.modulo }}</td>
+        <td>{{ campo.angulo }}°</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
-        </ul>
         
     <p>De los resultados obtenidos, se observa que en el punto  <B>E1</B> el campo eléctrico es cercano a cero, debido a que los campos generados por las dos cargas positivas se cancelan parcialmente. </p>
     <p>En  <B>E2</B> el campo eléctrico presenta un valor elevado, con un componente en  <B>y</B> claramente dominante y negativo, y un componente en <B>x</B> también negativo pero de menor magnitud. Esto sugiere que una carga de prueba positiva ubicada en dicha posición sería empujada principalmente hacia abajo y levemente hacia la izquierda, reflejando la influencia predominante de la carga negativa más cercana. Esta configuración puede visualizarse claramente en el gráfico de líneas de campo.</p>
@@ -63,9 +83,9 @@
     <h3>Líneas de Campo Eléctrico</h3>
     <img src="campo_electrico_con_puntos.png" alt="Campo Eléctrico con Puntos">
     
-    <div class="page-break"></div> <!--salto de pag-->
 
-    <p>En el gráfico <a href="Ex_vs_x.png"><i>“Campo Eléctrico E(x) sobre eje x”</i></a>, que representa el campo eléctrico total a lo largo del eje x, se observa que resulta de la suma de los campos generados por cada carga individual, representados en los gráficos  <a href="Exq1_vs_x.png"><i>“Campo Eléctrico E(x) de q1”</i></a>,  <a href="Exq2_vs_x.png"><i>“de q2”</i></a> y <a href="Exq3_vs_x.png"><i>“de q3”</i></a>. . Esta superposición refleja cómo las contribuciones individuales se combinan para formar el campo total, tal como se aprecia en la forma final del gráfico.</p>
+
+    <p>En el gráfico <a href="Ex_vs_x.png"><i>“Campo Eléctrico E(x) sobre eje x”</i></a>, que representa el campo eléctrico total a lo largo del eje x, se observa que resulta de la suma de los campos generados por cada carga individual, representados en los gráficos  <a href="Exq1_vs_x.png"><i>“Campo Eléctrico E(x) de q1”</i></a>,  <a href="Exq2_vs_x.png"><i>“de q2”</i></a> y <a href="Exq3_vs_x.png"><i>“de q3”</i></a> . Esta superposición refleja cómo las contribuciones individuales se combinan para formar el campo total, tal como se aprecia en la forma final del gráfico.</p>
 
     <img src="Exq1_vs_x.png" alt="E(x)">
 
@@ -75,31 +95,42 @@
 
     <img src="Ex_vs_x.png" alt="E(x)">
 
-    <div class="page-break"></div> <!--salto de pag-->
+  
 
-    <p>En el gráfico <a href="Ex_vs_x_con_equilibrio.png"><i>“E(x) con puntos de equilibrio”</i></a> se observa un punto de equilibrio en <b>x=0,71</b>, es donde el efecto de las dos cargas positivas se cancela y el campo es cero. Si bien solo se muestra ese punto, sabemos que existe otro en el infinito, donde el campo también se anula debido al predominio de la carga neta positiva del sistema. No fue posible representarlo por las limitaciones del gráfico. Las discontinuidades cerca de las cargas muestran cómo el campo crece mucho en esos puntos, lo que es típico en cargas puntuales.</p>
+    <p>En el gráfico <a href="Ex_vs_x_con_equilibrio.png"><i>“E(x) con puntos de equilibrio”</i></a> se observa un punto de equilibrio en:</p>
+    
 
-    <img src="Ex_vs_x_con_equilibrio.png" alt="E(x) con equilibrio">
-
-      <div style="text-align: center;"></div>
-        <h3>Puntos de equilibrio</h3>
     <ul>
     {% for punto in puntos %}
-    <li>{{ punto }}</li>
+    <p>{{ punto }}</p>
     {% endfor %}
     </ul>
     </div>
 
-    <div class="page-break"></div> <!--salto de pag-->
+    <p>Es donde el efecto de las dos cargas positivas se cancela y el campo es cero. Si bien solo se muestra ese punto, sabemos que existe otro en el infinito, donde el campo también se anula debido al predominio de la carga neta positiva del sistema. No fue posible representarlo por las limitaciones del gráfico. Las discontinuidades cerca de las cargas muestran cómo el campo crece mucho en esos puntos, lo que es típico en cargas puntuales.</p>
+
+    <img src="Ex_vs_x_con_equilibrio.png" alt="E(x) con equilibrio">
+
+
     
     <p>Las líneas equipotenciales muestran los puntos del espacio que tienen el mismo potencial eléctrico. Si se coloca una carga de prueba en cualquier punto sobre una línea equipotencial, no realizará trabajo eléctrico al moverse por esa línea, ya que su energía potencial no cambia. Estas líneas siempre son perpendiculares a las líneas del campo eléctrico, lo cual podemos observar si lo comparamos con el gráfico anterior:</p>
 
     <h3>Líneas Equipotenciales</h3>
     <img src="potencial_electrico.png" alt="Potencial Eléctrico">
 
-    <p>Por otro lado, el gráfico del potencial eléctrico muestra una transición continua, como se espera, con un mínimo definido por el signo de las cargas q1 y q2. Vemos en particular que en el punto de equilibrio del campo eléctrico se haya el mínimo de potencial eléctrico, relación que evidencia la fórmula E= −∇V, donde se establece que el campo eléctrico apunta en la dirección donde el potencial disminuye más rápidamente, y en este caso al ser 0 el campo, el cambio de V (su pendiente) será 0 y por lo tanto habrá un mínimo en dicho punto. </p>
+    <p>El gráfico del potencial total resulta de superponer los potenciales generados por las tres cargas individualmente. </p>
+    <p>Para calcular el potencial electrico de cada una de las cargas utilizamos la formula de potencial electrico para carga puntual:</p>
 
-    <h3>Gráfico de V(x)</h3>
+    <img src="Formula_Potencial.png" class="img2" alt="formula potencial" >
+
+    <p>En particular, se observa que en el punto de equilibrio del campo eléctrico se encuentra un mínimo del potencial eléctrico. Esta relación se explica a través de la expresión E = −∇V, la cual indica que el campo eléctrico apunta en la dirección en la que el potencial disminuye más rápidamente. En este caso, al anularse el campo (E=0), el gradiente del potencial también es cero, lo que implica que la pendiente de V se anula, dando lugar a un mínimo en ese punto. </p>
+
+    <img src="Vxq1_vs_x.png" alt="E(x)">
+
+    <img src="Vxq2_vs_x.png" alt="E(x)">
+
+    <img src="Vxq3_vs_x.png" alt="E(x)">
+
     <img src="Vx_vs_x.png" alt="V(x)">
 
     
